@@ -1,0 +1,27 @@
+<h2 (click)="shit()">Games list</h2>
+
+<mat-grid-list cols="5" rowHeight="350">
+  <!--  2:1-->
+
+  <mat-grid-tile *ngFor="let game of slicedGames">
+
+    <!--    <h3>-->
+    <!--      <a>-->
+    <!--        {{ game.Name.en }}-->
+    <!--      </a>-->
+    <!--    </h3>-->
+
+    <img [title]="game.ID + ' details'" src="{{game.ImageFullPath}}" alt="{{game.Name.en}}"
+         width="300" height="300">
+
+    <!--    <button (click)="play(game)">-->
+    <!--      Играть-->
+    <!--    </button>-->
+
+  </mat-grid-tile>
+
+</mat-grid-list>
+
+<!--<button (click)="nextGames()">-->
+<!--  Посмотреть больше игр-->
+<!--</button>-->
