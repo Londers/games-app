@@ -1,11 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 
-// import { games } from '../games';
 import {GamesService} from '../games.service';
 
-// function sortByName(a: namespace.game, b: namespace.game): number {
-// tslint:disable-next-line:typedef
-function sortByName(a, b) {
+function sortByName(a: Game, b: Game): number{
   if (a.Name.en < b.Name.en) {
     return -1;
   }
@@ -21,22 +18,25 @@ function sortByName(a, b) {
   styleUrls: ['./games-list.component.sass']
 })
 export class GamesListComponent implements OnInit {
-  sortedGames;
-  slicedGames;
+  sortedGames: Game[];
+  slicedGames: Game[];
+  currentPage = 0;
+  displayQuantity = 20;
 
   constructor(private gamesService: GamesService) {
+    this.sortedGames = this.gamesService.getGames().sort(sortByName);
+    this.slicedGames = this.sortedGames.slice(this.currentPage, this.currentPage + this.displayQuantity);
   }
 
   ngOnInit(): void {
-    this.gamesService.getGames().subscribe(res => {
-      // @ts-ignore
-      this.sortedGames = res.games.sort(sortByName);
-      this.slicedGames = this.sortedGames.slice(0, 20);
-    });
-
   }
 
   shit(): void {
     console.log(this.sortedGames);
+  }
+
+  nextGames(): void{
+    this.currentPage += this.displayQuantity;
+    this.slicedGames = this.sortedGames.slice(this.currentPage, this.currentPage + this.displayQuantity);
   }
 }

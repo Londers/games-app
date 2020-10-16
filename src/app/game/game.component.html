@@ -1,0 +1,18 @@
+<mat-card [ngClass]="{active: isActive(), inactive: !isActive()}"
+          (mouseenter)="setActive(true)"
+          (mouseleave)="setActive(false)">
+
+  <img mat-card-image [title]="game.ID + ' details'"
+       src="{{game.ImageFullPath}}"
+       alt="{{game.Name.en}}"
+       width="300" height="300">
+
+  <mat-card-title [ngClass]="{shown: isActive(), hidden: !isActive()}">
+    {{game.Name.en}}
+  </mat-card-title>
+
+  <mat-card-content [ngClass]="{shown: isActive(), hidden: !isActive()}">
+    <button (click)="play()">Play</button>
+  </mat-card-content>
+
+</mat-card>

@@ -2,26 +2,14 @@
 
 <mat-grid-list cols="5" rowHeight="350">
   <!--  2:1-->
+  <mat-grid-tile *ngFor="let game of slicedGames; index as i">
 
-  <mat-grid-tile *ngFor="let game of slicedGames">
-
-    <!--    <h3>-->
-    <!--      <a>-->
-    <!--        {{ game.Name.en }}-->
-    <!--      </a>-->
-    <!--    </h3>-->
-
-    <img [title]="game.ID + ' details'" src="{{game.ImageFullPath}}" alt="{{game.Name.en}}"
-         width="300" height="300">
-
-    <!--    <button (click)="play(game)">-->
-    <!--      Играть-->
-    <!--    </button>-->
+    <app-game [game]="slicedGames[i]"></app-game>
 
   </mat-grid-tile>
 
 </mat-grid-list>
 
-<!--<button (click)="nextGames()">-->
-<!--  Посмотреть больше игр-->
-<!--</button>-->
+<button (click)="nextGames()">
+  Посмотреть больше игр
+</button>

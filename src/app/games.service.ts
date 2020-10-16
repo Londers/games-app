@@ -1,17 +1,16 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-// import {map} from 'rxjs/operators';
+
+import json from '../assets/data.json';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class GamesService {
+  data;
+  constructor() {this.data = json as DataInterface; }
 
-  constructor(private http: HttpClient) {
-  }
-
-  // tslint:disable-next-line:typedef
-  getGames(){
-    return this.http.get('/assets/data.json');
+  getGames(): [Game]{
+    return this.data.games;
   }
 }
