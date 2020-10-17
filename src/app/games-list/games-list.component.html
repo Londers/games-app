@@ -1,5 +1,3 @@
-<h2 (click)="shit()">Games list</h2>
-
 <mat-grid-list cols="5" rowHeight="350">
   <!--  2:1-->
   <mat-grid-tile *ngFor="let game of slicedGames; index as i">
@@ -9,7 +7,3 @@
   </mat-grid-tile>
 
 </mat-grid-list>
-
-<button (click)="nextGames()">
-  Посмотреть больше игр
-</button>

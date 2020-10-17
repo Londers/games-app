@@ -1,0 +1,5 @@
+<select multiple name="countries" #merchantsElement (change)="changeMerchants.emit(merchantsElement.selectedOptions)">
+  <option *ngFor="let merchant of merchants" [ngValue]="merchant.ID">
+    {{ merchant.Name }}
+  </option>
+</select>

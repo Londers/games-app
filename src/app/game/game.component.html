@@ -7,11 +7,11 @@
        alt="{{game.Name.en}}"
        width="300" height="300">
 
-  <mat-card-title [ngClass]="{shown: isActive(), hidden: !isActive()}">
+  <mat-card-title *ngIf="isActive()">
     {{game.Name.en}}
   </mat-card-title>
 
-  <mat-card-content [ngClass]="{shown: isActive(), hidden: !isActive()}">
+  <mat-card-content *ngIf="isActive()">
     <button (click)="play()">Play</button>
   </mat-card-content>
 
