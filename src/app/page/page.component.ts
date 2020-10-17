@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 
 import {PageService} from '../page.service';
 import {FormBuilder} from '@angular/forms';
@@ -17,19 +17,48 @@ export class PageComponent implements OnInit {
   limitValues = [20, 40, 60];
   checkoutForm: any;
   merchants: Merchant[];
+  categories: Category[];
+
+  totalGamesCount: number;
+  filteredGamesCount: number;
 
   constructor(private pageService: PageService,
               private formBuilder: FormBuilder) {
-    this.sortedGames = this.pageService.getGames();
+    this.sortedGames = this.pageService.getFilteredGames;
     this.size = this.sortedGames.length;
     this.slicedGames = this.sortedGames.slice(this.offset, this.offset + this.limit);
     this.checkoutForm = this.formBuilder.group({
       search: ''
     });
-    this.merchants = pageService.getMerchants();
+    this.merchants = pageService.getMerchants;
+    this.categories = pageService.getCategories;
+    this.totalGamesCount = pageService.getTotalGamesCount();
+    this.filteredGamesCount = pageService.getFilteredGamesCount();
   }
 
   ngOnInit(): void {
+  }
+
+  changeCategories(categories: any): void {
+    const selectedMerchantIDs = [];
+    for (const key in categories) {
+      if (categories.hasOwnProperty(key)) {
+        selectedMerchantIDs.push(this.findCategoryID(categories[key].label));
+      }
+    }
+    this.pageService.findGamesByCategories(selectedMerchantIDs);
+    this.reloadList();
+    this.offset = 0;
+  }
+
+  findCategoryID(name: string): string {
+    let categoryID = '-1';
+    this.categories.forEach(category => {
+      if (category.Name.en === name) {
+        categoryID = category.ID;
+      }
+    });
+    return categoryID;
   }
 
   changeMerchants(merchants: {
@@ -41,8 +70,9 @@ export class PageComponent implements OnInit {
         selectedMerchantIDs.push(this.findMerchantID(merchants[key].label));
       }
     }
-    this.sortedGames = this.pageService.findGamesByMerchant(selectedMerchantIDs);
+    this.pageService.findGamesByMerchant(selectedMerchantIDs);
     this.reloadList();
+    this.offset = 0;
   }
 
   findMerchantID(name: string): string {
@@ -56,6 +86,9 @@ export class PageComponent implements OnInit {
   }
 
   reloadList(): void {
+    this.sortedGames = this.pageService.getFilteredGames;
+    this.totalGamesCount = this.pageService.getTotalGamesCount();
+    this.filteredGamesCount = this.pageService.getFilteredGamesCount();
     this.slicedGames = this.sortedGames.slice(this.offset, this.offset + this.limit);
   }
 
@@ -72,12 +105,13 @@ export class PageComponent implements OnInit {
   }
 
   onLimitChange(event: number): void {
-    this.limit = event;
+    this.limit = Number(event);
     this.reloadList();
   }
 
   onSearch(searchValue: string): void {
-    this.sortedGames = this.pageService.findGames(searchValue);
+    this.sortedGames = this.pageService.findGamesByName(searchValue);
     this.reloadList();
+    this.offset = 0;
   }
 }

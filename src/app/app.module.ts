@@ -12,6 +12,8 @@ import { GameComponent } from './game/game.component';
 import { PageComponent } from './page/page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MerchantSelectComponent } from './merchant-select/merchant-select.component';
+import { CategorySelectComponent } from './category-select/category-select.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { MerchantSelectComponent } from './merchant-select/merchant-select.compo
     GameComponent,
     PageComponent,
     MerchantSelectComponent,
+    CategorySelectComponent,
+    PageHeaderComponent,
   ],
   imports: [
     BrowserModule,

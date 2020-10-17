@@ -1,20 +1,17 @@
 <div>
-  <h2>Games list</h2>
+  <app-page-header [totalGamesCount]="totalGamesCount" [filteredGamesCount]="filteredGamesCount"></app-page-header>
 
   <form [formGroup]="checkoutForm" (ngSubmit)="onSearch(checkoutForm.value.search)">
-    <div>
-      <label for="search">
-      </label>
-      <input id="search" type="text" placeholder="Game search" formControlName="search">
-    </div>
+    <!--    <div>-->
+    <label for="search">
+    </label>
+    <input id="search" type="text" placeholder="Game search" formControlName="search">
+    <button class="button" type="submit">Search</button>
+    <!--    </div>-->
   </form>
 
-<!--  <select multiple name="countries" [formControl]="countryControl">-->
-<!--    <option *ngFor="let merchant of merchants" [ngValue]="merchant">-->
-<!--      {{ merchant.Name }}-->
-<!--    </option>-->
-<!--  </select>-->
   <app-merchant-select [merchants]="merchants" (changeMerchants)="changeMerchants($event)"></app-merchant-select>
+  <app-category-select [categories]="categories" (changeCategories)="changeCategories($event)"></app-category-select>
 
   <select [(ngModel)]="limit" (ngModelChange)="onLimitChange($event)">
     <option *ngFor="let value of limitValues" [value]="value">{{value}}</option>
@@ -22,22 +19,11 @@
 </div>
 
 <app-games-list [slicedGames]="slicedGames"></app-games-list>
-<!--[offset]="offset" [limit]="limit" [size]="size"-->
 
 <button (click)="previousGames()" *ngIf="(offset-limit) >= 0">
   Назад
 </button>
 
-<button (click)="nextGames()">
+<button (click)="nextGames()" *ngIf="(offset+limit) <= sortedGames.length">
   Далее
 </button>
-
-
-<!--<mat-grid-list cols="5" rowHeight="50" class="pagination">-->
-<!--  &lt;!&ndash;  2:1&ndash;&gt;-->
-<!--  <mat-grid-tile *ngFor="let page of pages | async" [class.active]="page == currentPage">-->
-<!--    <a href="javascript:void(0)" (click)="selectPage(page)">-->
-<!--      {{page}}-->
-<!--    </a>-->
-<!--  </mat-grid-tile>-->
-<!--</mat-grid-list>-->

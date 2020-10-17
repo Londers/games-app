@@ -1,0 +1,8 @@
+<label for="categories">Categories</label>
+<select multiple #categoriesElement (change)="changeCategories.emit(categoriesElement.selectedOptions)"
+        [(ngModel)]="usersSelected" id="categories">
+  <option *ngFor="let category of categories" [ngValue]="category.ID">
+    {{ category.Name.en }}
+  </option>
+</select>
+<button (click)="uncheckAll(); changeCategories.emit([])">Uncheck categories</button>

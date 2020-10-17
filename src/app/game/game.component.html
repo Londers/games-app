@@ -2,7 +2,7 @@
           (mouseenter)="setActive(true)"
           (mouseleave)="setActive(false)">
 
-  <img mat-card-image [title]="game.ID + ' details'"
+  <img mat-card-image
        src="{{game.ImageFullPath}}"
        alt="{{game.Name.en}}"
        width="300" height="300">
@@ -13,6 +13,8 @@
 
   <mat-card-content *ngIf="isActive()">
     <button (click)="play()">Play</button>
+    <button (click)="addToFavorites()" *ngIf="!isFavorite()">Add to favorites</button>
+    <button (click)="deleteFromFavorites()" *ngIf="isFavorite()">Delete from favorites</button>
   </mat-card-content>
 
 </mat-card>
