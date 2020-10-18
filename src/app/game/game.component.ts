@@ -12,6 +12,7 @@ export class GameComponent implements OnInit {
   @Input() game: Game;
   slicedGames: Game[] | undefined;
   active = false;
+  width: number;
 
   constructor(private gameService: GamesService) {
     this.game = {} as Game;

@@ -1,4 +1,4 @@
-<mat-card [ngClass]="{active: isActive(), inactive: !isActive()}"
+<mat-card [ngClass]="{active: isActive(), inactive: !isActive()} "
           (mouseenter)="setActive(true)"
           (mouseleave)="setActive(false)">
   <img mat-card-image
@@ -11,8 +11,12 @@
   </mat-card-title>
 
   <mat-card-content *ngIf="isActive()">
-    <button (click)="play()">Play</button>
-    <button (click)="addToFavorites()" *ngIf="!isFavorite()">Add to favorites</button>
-    <button (click)="deleteFromFavorites()" *ngIf="isFavorite()">Delete from favorites</button>
+    <button mat-raised-button color="primary" (click)="play()">Play</button>
+    <button mat-raised-button color="primary" (click)="addToFavorites()" *ngIf="!isFavorite()">
+      Add to favorites
+    </button>
+    <button mat-raised-button color="primary" (click)="deleteFromFavorites()" *ngIf="isFavorite()">
+      Delete from favorites
+    </button>
   </mat-card-content>
 </mat-card>

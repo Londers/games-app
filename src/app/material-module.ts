@@ -42,8 +42,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
-// import {c} from '@angular/cdk/coercion';
 import {BidiModule} from '@angular/cdk/bidi';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
   exports: [
@@ -66,6 +66,7 @@ import {BidiModule} from '@angular/cdk/bidi';
     MatDialogModule,
     MatDividerModule,
     MatExpansionModule,
+    MatFormFieldModule,
     MatGridListModule,
     MatIconModule,
     MatInputModule,
@@ -91,8 +92,7 @@ import {BidiModule} from '@angular/cdk/bidi';
     OverlayModule,
     PortalModule,
     ScrollingModule,
-    // coerceArray,
-    BidiModule
+    BidiModule,
   ]
 })
 export class DemoMaterialModule {}

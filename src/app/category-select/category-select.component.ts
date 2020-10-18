@@ -10,7 +10,8 @@ export class CategorySelectComponent implements OnInit {
   @Input() categories: Category[];
   selectedCategories: string[];
   @Output() changeCategories = new EventEmitter();
-  usersSelected = [];
+  // usersSelected = [];
+  categoryFormControl = new FormControl();
 
   constructor() {
     this.categories = [];
@@ -20,8 +21,8 @@ export class CategorySelectComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  uncheckAll(): void {
-    this.usersSelected = [];
-  }
+  // uncheckAll(): void {
+  //   this.usersSelected = [];
+  // }
 
 }

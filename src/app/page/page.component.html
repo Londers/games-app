@@ -8,26 +8,41 @@
 
   <div fxLayout="row" fxLayoutAlign="center" fxFlexOffset="10px">
     <form [formGroup]="checkoutForm" (ngSubmit)="onSearch(checkoutForm.value.search)" fxFlexOffset="10%">
-      <label for="search">
-      </label>
-      <input id="search" type="text" placeholder="Game search" formControlName="search">
-      <button class="button" type="submit">Search</button>
+
+      <mat-form-field>
+        <label>
+          <input matInput type="text" placeholder="Game Search" formControlName="search">
+        </label>
+      </mat-form-field>
+      <button mat-raised-button color="primary" class="button" type="submit">Search</button>
+      <!--      <label for="search">-->
+      <!--      </label>-->
+      <!--      <input id="search" type="text"  placeholder="Game Search" formControlName="search">-->
+      <!--      <button mat-raised-button color="primary" class="button" type="submit">Search</button>-->
+
     </form>
-    <label fxFlexOffset="4%"> Games per page
-      <select [(ngModel)]="limit" (ngModelChange)="onLimitChange($event)">
-        <option *ngFor="let value of limitValues" [value]="value">{{value}}</option>
-      </select>
-    </label>
+    <!--      <select [(ngModel)]="limit" (ngModelChange)="onLimitChange($event)">-->
+    <!--        <option *ngFor="let value of limitValues" [value]="value">{{value}}</option>-->
+    <!--      </select>-->
+    <mat-form-field fxFlexOffset="4%" appearance="fill">
+      <mat-label>Games per page</mat-label>
+      <mat-select [(ngModel)]="limit" (ngModelChange)="onLimitChange($event)">
+        <mat-option *ngFor="let value of limitValues" [value]="value">
+          {{value}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
   </div>
 </div>
 
 <app-games-list [slicedGames]="slicedGames"></app-games-list>
 
 <div fxLayout="row" fxLayoutAlign="space-evenly center">
-  <button (click)="previousGames()" *ngIf="(offset-limit) >= 0">
+  <button mat-raised-button color="primary" (click)="previousGames()" *ngIf="(offset-limit) >= 0">
     Назад
   </button>
-  <button (click)="nextGames()" *ngIf="(offset+limit) <= sortedGames.length">
+  <button mat-raised-button color="primary" (click)="nextGames()" *ngIf="(offset+limit) <= sortedGames.length">
     Далее
   </button>
 </div>

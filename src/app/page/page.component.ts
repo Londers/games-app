@@ -43,7 +43,7 @@ export class PageComponent implements OnInit {
     const selectedMerchantIDs = [];
     for (const key in categories) {
       if (categories.hasOwnProperty(key)) {
-        selectedMerchantIDs.push(this.findCategoryID(categories[key].label));
+        selectedMerchantIDs.push(categories[key].value);
       }
     }
     this.pageService.findGamesByCategories(selectedMerchantIDs);
@@ -51,38 +51,18 @@ export class PageComponent implements OnInit {
     this.offset = 0;
   }
 
-  findCategoryID(name: string): string {
-    let categoryID = '-1';
-    this.categories.forEach(category => {
-      if (category.Name.en === name) {
-        categoryID = category.ID;
-      }
-    });
-    return categoryID;
-  }
-
   changeMerchants(merchants: {
-    [id: string]: { label: string };
+    [id: string]: { value: string };
   }): void {
     const selectedMerchantIDs = [];
     for (const key in merchants) {
       if (merchants.hasOwnProperty(key)) {
-        selectedMerchantIDs.push(this.findMerchantID(merchants[key].label));
+        selectedMerchantIDs.push(merchants[key].value);
       }
     }
     this.pageService.findGamesByMerchant(selectedMerchantIDs);
     this.reloadList();
     this.offset = 0;
-  }
-
-  findMerchantID(name: string): string {
-    let merchantID = '-1';
-    this.merchants.forEach(merchant => {
-      if (merchant.Name === name) {
-        merchantID = merchant.ID;
-      }
-    });
-    return merchantID;
   }
 
   reloadList(): void {

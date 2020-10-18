@@ -1,9 +1,16 @@
-<div fxLayout="column" fxLayoutAlign="center">
-  <label for="merchants">Merchants</label>
-  <select multiple #merchantsElement (change)="changeMerchants.emit(merchantsElement.selectedOptions)" id="merchants">
-    <option *ngFor="let merchant of merchants" [ngValue]="merchant.ID">
-      {{ merchant.Name }}
-    </option>
-  </select>
-  <button (click)="uncheckAll(); changeMerchants.emit([])">Uncheck merchants</button>
-</div>
+<!--<div fxLayout="column" fxLayoutAlign="center">-->
+<!--  <label for="merchants">Merchants</label>-->
+<!--  <select multiple #merchantsElement (change)="changeMerchants.emit(merchantsElement.selectedOptions)" id="merchants">-->
+<!--    <option *ngFor="let merchant of merchants" [ngValue]="merchant.ID">-->
+<!--      {{ merchant.Name }}-->
+<!--    </option>-->
+<!--  </select>-->
+<!--  <button (click)="uncheckAll(); changeMerchants.emit([])">Uncheck merchants</button>-->
+<!--</div>-->
+
+<mat-form-field appearance="fill">
+  <mat-label>Merchants</mat-label>
+  <mat-select [formControl]="merchantFormControl" #merchantsElement (ngModelChange)="changeMerchants.emit(merchantsElement.selected)" multiple>
+    <mat-option *ngFor="let merchant of merchants" [value]="merchant.ID">{{merchant.Name}}</mat-option>
+  </mat-select>
+</mat-form-field>

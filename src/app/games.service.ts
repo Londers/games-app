@@ -11,7 +11,6 @@ export class GamesService {
 
   constructor() {
     this.data = json as unknown as DataInterface;
-    console.log(this.data);
   }
 
   getCategories(): Category[] {

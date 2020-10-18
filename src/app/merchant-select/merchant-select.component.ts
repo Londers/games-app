@@ -1,4 +1,5 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-merchant-select',
@@ -9,7 +10,8 @@ export class MerchantSelectComponent implements OnInit {
   @Input() merchants: Merchant[];
   selectedMerchants: string[];
   @Output() changeMerchants = new EventEmitter();
-  usersSelected = [];
+  // usersSelected = [];
+  merchantFormControl = new FormControl();
 
   constructor() {
     this.merchants = [];
@@ -19,7 +21,7 @@ export class MerchantSelectComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  uncheckAll(): void {
-    this.usersSelected = [];
-  }
+  // uncheckAll(): void {
+  //   this.usersSelected = [];
+  // }
 }
