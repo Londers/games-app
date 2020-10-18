@@ -1,43 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { MatGridListModule } from '@angular/material/grid-list';
-import { MatCardModule } from '@angular/material/card';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GamesListComponent } from './games-list/games-list.component';
-import { GameComponent } from './game/game.component';
-import { PageComponent } from './page/page.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MerchantSelectComponent } from './merchant-select/merchant-select.component';
 import { CategorySelectComponent } from './category-select/category-select.component';
+import { GameComponent } from './game/game.component';
+import { GamesListComponent } from './games-list/games-list.component';
+import { MerchantSelectComponent } from './merchant-select/merchant-select.component';
+import { PageComponent } from './page/page.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GamesListComponent,
-    GameComponent,
-    PageComponent,
-    MerchantSelectComponent,
     CategorySelectComponent,
-    PageHeaderComponent,
+    GameComponent,
+    GamesListComponent,
+    MerchantSelectComponent,
+    PageComponent,
+    PageHeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    RouterModule.forRoot([
-      {
-        path: '', component: PageComponent,
-      },
-    ]),
     MatGridListModule,
     MatCardModule,
     FormsModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

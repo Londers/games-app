@@ -14,9 +14,6 @@ export class GamesService {
     console.log(this.data);
   }
 
-  // getCategories(): Category[] {
-  //   return this.data.categories.sort(this.sortByName);
-  // }
   getCategories(): Category[] {
     this.data.categories = this.data.categories.sort(this.sortByName);
     const favorites = this.getFavorites();

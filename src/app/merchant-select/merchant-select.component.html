@@ -1,7 +1,9 @@
-<label for="merchants">Merchants</label>
-<select multiple #merchantsElement (change)="changeMerchants.emit(merchantsElement.selectedOptions)" id="merchants">
-  <option *ngFor="let merchant of merchants" [ngValue]="merchant.ID">
-    {{ merchant.Name }}
-  </option>
-</select>
-<button (click)="uncheckAll(); changeMerchants.emit([])">Uncheck merchants</button>
+<div fxLayout="column" fxLayoutAlign="center">
+  <label for="merchants">Merchants</label>
+  <select multiple #merchantsElement (change)="changeMerchants.emit(merchantsElement.selectedOptions)" id="merchants">
+    <option *ngFor="let merchant of merchants" [ngValue]="merchant.ID">
+      {{ merchant.Name }}
+    </option>
+  </select>
+  <button (click)="uncheckAll(); changeMerchants.emit([])">Uncheck merchants</button>
+</div>

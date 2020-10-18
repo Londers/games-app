@@ -1,9 +1,5 @@
 <mat-grid-list cols="5" rowHeight="350">
-  <!--  2:1-->
   <mat-grid-tile *ngFor="let game of slicedGames; index as i">
-
     <app-game [game]="slicedGames[i]"></app-game>
-
   </mat-grid-tile>
-
 </mat-grid-list>

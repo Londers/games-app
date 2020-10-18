@@ -1,29 +1,33 @@
-<div>
+<div fxLayout="column">
   <app-page-header [totalGamesCount]="totalGamesCount" [filteredGamesCount]="filteredGamesCount"></app-page-header>
 
-  <form [formGroup]="checkoutForm" (ngSubmit)="onSearch(checkoutForm.value.search)">
-    <!--    <div>-->
-    <label for="search">
+  <div fxLayout="row" fxLayoutAlign="space-evenly center">
+    <app-merchant-select [merchants]="merchants" (changeMerchants)="changeMerchants($event)"></app-merchant-select>
+    <app-category-select [categories]="categories" (changeCategories)="changeCategories($event)"></app-category-select>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center" fxFlexOffset="10px">
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSearch(checkoutForm.value.search)" fxFlexOffset="10%">
+      <label for="search">
+      </label>
+      <input id="search" type="text" placeholder="Game search" formControlName="search">
+      <button class="button" type="submit">Search</button>
+    </form>
+    <label fxFlexOffset="4%"> Games per page
+      <select [(ngModel)]="limit" (ngModelChange)="onLimitChange($event)">
+        <option *ngFor="let value of limitValues" [value]="value">{{value}}</option>
+      </select>
     </label>
-    <input id="search" type="text" placeholder="Game search" formControlName="search">
-    <button class="button" type="submit">Search</button>
-    <!--    </div>-->
-  </form>
-
-  <app-merchant-select [merchants]="merchants" (changeMerchants)="changeMerchants($event)"></app-merchant-select>
-  <app-category-select [categories]="categories" (changeCategories)="changeCategories($event)"></app-category-select>
-
-  <select [(ngModel)]="limit" (ngModelChange)="onLimitChange($event)">
-    <option *ngFor="let value of limitValues" [value]="value">{{value}}</option>
-  </select>
+  </div>
 </div>
 
 <app-games-list [slicedGames]="slicedGames"></app-games-list>
 
-<button (click)="previousGames()" *ngIf="(offset-limit) >= 0">
-  Назад
-</button>
-
-<button (click)="nextGames()" *ngIf="(offset+limit) <= sortedGames.length">
-  Далее
-</button>
+<div fxLayout="row" fxLayoutAlign="space-evenly center">
+  <button (click)="previousGames()" *ngIf="(offset-limit) >= 0">
+    Назад
+  </button>
+  <button (click)="nextGames()" *ngIf="(offset+limit) <= sortedGames.length">
+    Далее
+  </button>
+</div>

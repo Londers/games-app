@@ -1,7 +1,6 @@
 <mat-card [ngClass]="{active: isActive(), inactive: !isActive()}"
           (mouseenter)="setActive(true)"
           (mouseleave)="setActive(false)">
-
   <img mat-card-image
        src="{{game.ImageFullPath}}"
        alt="{{game.Name.en}}"
@@ -16,5 +15,4 @@
     <button (click)="addToFavorites()" *ngIf="!isFavorite()">Add to favorites</button>
     <button (click)="deleteFromFavorites()" *ngIf="isFavorite()">Delete from favorites</button>
   </mat-card-content>
-
 </mat-card>
